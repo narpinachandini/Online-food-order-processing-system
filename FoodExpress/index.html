@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodExpress - Online Food Delivery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h1>Food<span>Express</span></h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#menu">Menu</a>
+      <button id="accountButton" class="secondary-button">Register / Account</button>
+      <button id="cartButton">Cart (<span id="cartCount">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div>
+        <p class="eyebrow">GOOD FOOD. RIGHT ON TIME.</p>
+        <h2>Delicious food delivered to your door</h2>
+        <p>Explore restaurants in your city, choose your favourite food, and order online.</p>
+        <a href="#restaurants" class="hero-button">Order Now</a>
+      </div>
+      <div class="hero-food">🍔 🍕 🍟</div>
+    </section>
+
+    <section class="account-strip">
+      <div>
+        <strong id="welcomeText">Welcome to FoodExpress!</strong>
+        <p id="accountStatus">Register to place an order.</p>
+      </div>
+      <div class="city-picker">
+        <label for="citySelect">Your city</label>
+        <select id="citySelect">
+          <option value="Vijayawada">Vijayawada</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Guntur">Guntur</option>
+          <option value="Tirupati">Tirupati</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search for food or restaurants..." />
+    </section
+
+    <section id="restaurants" class="section">
+      <h2>Popular Restaurants in <span id="restaurantCity">Vijayawada</span></h2>
+      <div id="restaurantList" class="restaurant-list"></div>
+    </section>
+
+    <section id="menu" class="section">
+      <div class="section-heading">
+        <div>
+          <h2>Popular Food Items</h2>
+          <p>Choose your favourites and add them to your cart.</p>
+        </div>
+        <div class="partner-count">🚴 <strong id="partnerCount">12</strong> delivery partners available</div>
+      </div>
+      <div id="foodContainer" class="food-grid"></div>
+    </section>
+  </main>
+
+  <div id="registerModal" class="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeRegister" aria-label="Close">×</button>
+      <h2>Customer Registration</h2>
+      <p class="muted">Create an account before placing your order.</p>
+      <form id="registerForm">
+        <label for="customerName">Full name</label>
+        <input id="customerName" required placeholder="Enter your name" />
+        <label for="customerAge">Age</label>
+        <input id="customerAge" type="number" min="10" max="120" required placeholder="You must be above 9" />
+        <label for="customerEmail">Your email</label>
+        <input id="customerEmail" type="email" required placeholder="you@example.com" />
+        <label for="customerPassword">Create password</label>
+        <input id="customerPassword" type="password" minlength="6" required placeholder="At least 6 characters" />
+        <label for="parentEmail">Parent / guardian email</label>
+        <input id="parentEmail" type="email" required placeholder="parent@example.com" />
+        <label class="check-row"><input type="checkbox" id="premiumCheck" /> Register as a Premium customer (priority processing and faster delivery)</label>
+        <button type="submit" class="full-button">Send parent email OTP</button>
+      </form>
+      <div id="otpArea" class="otp-area hidden">
+        <p id="otpMessage"></p>
+        <label for="otpInput">Enter parent email OTP</label>
+        <input id="otpInput" inputmode="numeric" maxlength="6" placeholder="6-digit OTP" />
+        <button id="verifyOtpButton" class="full-button">Verify OTP & Complete Registration</button>
+      </div>
+      <div class="login-switch">
+        Already registered? <button type="button" id="showLoginButton" class="text-button">Login</button>
+      </div>
+      <p class="fine-print">Demo only: the generated OTP is displayed on screen. A real email OTP and secure account storage need a backend.</p>
+    </div>
+  </div>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeLogin" aria-label="Close">×</button>
+      <h2>Customer Login</h2>
+      <p class="muted">Sign in with your registered email and password.</p>
+      <form id="loginForm">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" required placeholder="you@example.com" />
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" required placeholder="Enter your password" />
+        <button type="submit" class="full-button">Login</button>
+      </form>
+      <div class="login-switch">
+        New to FoodExpress? <button type="button" id="showRegisterButton" class="text-button">Register</button>
+      </div>
+      <p class="fine-print">This classroom demo stores account details in this browser only. Do not use a real password.</p>
+    </div>
+  </div>
+
+  <div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+      <div><h2>Your Cart</h2><p id="cartPriority" class="muted">Regular order</p></div>
+      <button id="closeCart" aria-label="Close cart">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="bill-row"><span>Subtotal</span><strong>₹<span id="cartSubtotal">0</span></strong></div>
+      <div class="bill-row"><span>GST (fixed)</span><strong>₹17</strong></div>
+      <div class="bill-row grand-total"><span>Total</span><strong>₹<span id="cartTotal">17</span></strong></div>
+      <button id="checkoutButton">Place Order</button>
+      <p class="fine-print">GST is a fixed demo charge of ₹17 per order.</p>
+    </div>
+  </div>
+
+  <footer><p>© 2026 FoodExpress | Online Food Delivery System</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
